@@ -12,9 +12,9 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
-from utils.log_config import logger
-from users.user_curd import get_user_by_id
-from models.user_models import User
+from data_center.utils.log_config import logger
+from data_center.users.user_curd import get_user_by_id
+from data_center.models.user_models import User
 
 # openssl rand -hex 32
 SECRET_KEY = 'a02236baeb6a64cb5dddab02ea4808a6b2a543c367d294b70cfc6d7cc516ef8a'

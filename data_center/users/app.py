@@ -10,10 +10,10 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.security import OAuth2PasswordBearer
-from utils import secret
+from data_center.utils import secret
 from data_center.models.database import get_db
 from .user_curd import get_user_by_name, create_user
-from models.user_models import User
+from data_center.models.user_models import User
 from data_center.models.schemas.user_schemas import AddUserSchemas, ReadeUserSchemas
 
 user_app = APIRouter()

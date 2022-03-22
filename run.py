@@ -7,12 +7,12 @@
 """
 import uvicorn
 import time
-from utils.log_config import logger
+from data_center.utils.log_config import logger
 from fastapi import FastAPI, Request, HTTPException, status, Response
 from fastapi.middleware.cors import CORSMiddleware
 
-from users import user_app
-from utils import secret
+from data_center import user_app
+from data_center.utils import secret
 from data_center.models.database import SessionLocal
 
 app = FastAPI(

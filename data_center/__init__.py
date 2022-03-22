@@ -6,5 +6,4 @@
 @time:2022/03/22
 """
 
-if __name__ == '__main__':
-    pass
+from .users.app import user_app
