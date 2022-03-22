@@ -46,17 +46,7 @@ def get_users(db: Session, skip: int = 0, limit: int = 10):
 
 
 # 通过用户名字查询用户信息
-def get_user_by_name(db: Session, user_name: str = None):
-    result = db.execute(select(User).where(User.user_name == user_name)).scalars().first()
-    if result:
-        logger.info(f'通过用户名{user_name}查询到的用户信息是{result.__dict__}')
-        return result
-    else:
-        return False
-
-
-# 通过用户名字查询用户信息
-def get_user_by_id(db: Session, id: int = None, user_name: str = None):
+def get_user(db: Session, id: int = None, user_name: str = None):
     result = db.query(User).filter(or_(User.id == id, User.user_name == user_name)).first()
     # result = db.execute(select(User).where(User.id == id)).scalars().first()
     logger.info(f'通过用户ID{id}查询到的用户信息是{result.__dict__}')

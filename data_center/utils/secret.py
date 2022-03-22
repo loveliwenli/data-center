@@ -13,7 +13,7 @@ from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from data_center.utils.log_config import logger
-from data_center.users.user_curd import get_user_by_id
+from data_center.users.user_curd import get_user
 from data_center.models.user_models import User
 
 # openssl rand -hex 32
@@ -72,7 +72,7 @@ def verify_token(db: Session, token: str = Depends(oauth2_scheme)):
             return False
     except JWTError:
         return False
-    user = get_user_by_id(db, id=id)
+    user = get_user(db, id=id)
     if not user:
         return False
     return user

@@ -5,6 +5,7 @@
 @file:app.py
 @time:2022/03/22
 """
+from typing import List
 from loguru import logger
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -12,7 +13,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.security import OAuth2PasswordBearer
 from data_center.utils import secret
 from data_center.models.database import get_db
-from .user_curd import get_user_by_name, create_user
+from .user_curd import get_user, get_users, create_user
 from data_center.models.user_models import User
 from data_center.models.schemas.user_schemas import AddUserSchemas, ReadeUserSchemas
 
@@ -20,7 +21,7 @@ user_app = APIRouter()
 
 
 def authenticate_user(db: Session, form_data: OAuth2PasswordRequestForm = Depends()) -> User:
-    user = get_user_by_name(db, form_data.username)
+    user = get_user(db, user_name=form_data.username)
     if user:
         if secret.verify_password(form_data.password, user.password):
             return user
@@ -49,3 +50,13 @@ async def register(user_info: AddUserSchemas, db: Session = Depends(get_db)):
 @user_app.get("/user/me", response_model=ReadeUserSchemas)
 async def register(token: str = Depends(OAuth2PasswordBearer(tokenUrl='/login')), db: Session = Depends(get_db)):
     return secret.verify_token(db, token)
+
+
+@user_app.get("/users/list", response_model=List[ReadeUserSchemas])
+async def register(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    return get_users(db, skip, limit)
+
+
+@user_app.get("/users/query", response_model=ReadeUserSchemas)
+async def register(id: int = None, user_name: str = None, db: Session = Depends(get_db)):
+    return get_user(db, id=id, user_name=user_name)

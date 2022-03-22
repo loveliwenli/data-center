@@ -10,25 +10,30 @@ from typing import Optional, List
 from pydantic import BaseModel
 
 
-class ReadeUserSchemas(BaseModel):
+class BaseUserSchemas(BaseModel):
+    id: int
     user_name: str
     full_name: Optional[str] = None
     email: Optional[str] = None
     phone: Optional[str] = None
     status: bool
 
+
+class ReadeUserSchemas(BaseUserSchemas):
+    id: int
+
     class Config:
         orm_mode = True
 
 
-class UpdateUserSchemas(ReadeUserSchemas):
+class UpdateUserSchemas(BaseUserSchemas):
     password: str
 
     class Config:
         orm_mode = True
 
 
-class AddUserSchemas(UpdateUserSchemas):
+class AddUserSchemas(BaseUserSchemas):
     status: Optional[bool] = 0
 
     class Config:
