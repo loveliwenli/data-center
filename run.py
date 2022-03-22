@@ -8,12 +8,12 @@
 import uvicorn
 import time
 from utils.log_config import logger
-from fastapi import FastAPI, Request, HTTPException, status, Depends, Response
+from fastapi import FastAPI, Request, HTTPException, status, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from users import user_app
 from utils import secret
-from models.database import SessionLocal
+from data_center.models.database import SessionLocal
 
 app = FastAPI(
     title="数据构造中心",

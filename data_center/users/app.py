@@ -11,10 +11,10 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.security import OAuth2PasswordBearer
 from utils import secret
-from models.database import get_db
+from data_center.models.database import get_db
 from .user_curd import get_user_by_name, create_user
 from models.user_models import User
-from models.schemas.user_schemas import AddUserSchemas, ReadeUserSchemas
+from data_center.models.schemas.user_schemas import AddUserSchemas, ReadeUserSchemas
 
 user_app = APIRouter()
 

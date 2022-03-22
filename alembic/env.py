@@ -1,7 +1,6 @@
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-from config import db_config
 
 # import configparser
 # config = configparser.ConfigParser()
@@ -19,8 +18,7 @@ config = context.config
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
 
-from models import task_models, unit_models, user_models, log_models
-from models import database
+from data_center.models import database
 
 # add your model's MetaData object here
 # for 'autogenerate' support

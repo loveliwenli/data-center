@@ -6,9 +6,9 @@
 @time:2022/03/15
 """
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session, Session
+from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.orm import declarative_base
-from config import db_config
+from data_center.config import db_config
 
 SQLALCHEMY_DATABASE_URL = db_config.db_url
 

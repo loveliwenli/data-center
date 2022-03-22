@@ -12,8 +12,8 @@ from sqlalchemy import select, update
 from sqlalchemy.sql import or_
 from pymysql.err import IntegrityError
 
-from models.user_models import Group, User, GroupAndUser
-from models.schemas.user_schemas import UpdateUserSchemas, AddUserSchemas, GroupSchemas, ReadeUserSchemas
+from models.user_models import Group, User
+from data_center.models.schemas.user_schemas import UpdateUserSchemas, AddUserSchemas, GroupSchemas, ReadeUserSchemas
 from utils import secret
 
 
